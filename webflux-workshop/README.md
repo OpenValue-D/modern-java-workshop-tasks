@@ -69,6 +69,8 @@ We are now migrating the rest of the application. This is a bigger step.
 - change `url` in properties to `r2dbc:h2:mem:///mydb`
 - make the repositories extend `ReactiveCrudRepository`
 - return only Mono and Flux in the repositories
+- you might have to make changes as r2dbc does not support relations yet:  
+https://github.com/spring-projects/spring-data-relational/issues/1834
 
 ## 2. Additional tasks: Development
 
