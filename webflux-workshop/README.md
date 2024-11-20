@@ -71,6 +71,10 @@ We are now migrating the rest of the application. This is a bigger step.
 - return only Mono and Flux in the repositories
 - you might have to make changes as r2dbc does not support relations yet:  
 https://github.com/spring-projects/spring-data-relational/issues/1834
+    - mark `books` from `customer` with `@Transient`
+    - R2DBC ignores this field now
+    - this means we have to set it ourselves, whenever we get a customer
+    - do this in the CustomerService, let all communiction to the CustomerRepository go over the service
 
 ## 2. Additional tasks: Development
 
