@@ -4,6 +4,8 @@ It is you task to migrate it to Spring Webflux.
 
 We are doing this in smaller steps.
 
+You may use the client from the webflux-examples here if you do not want to use curl for testing.
+
 ## 1. Migration
 
 ### 1.1 Migrate RestController
