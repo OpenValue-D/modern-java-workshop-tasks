@@ -19,3 +19,8 @@ spring:
       settings:
         web-allow-others: true
 
+library:
+  rental-period-days:
+    book: 30
+    audio-book: 14
+    default-period: 7

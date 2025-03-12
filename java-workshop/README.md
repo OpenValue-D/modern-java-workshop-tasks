@@ -32,7 +32,7 @@ Use records where possible.
 <details>
 <summary>Hint</summary>
 
-You can change all the classes in the `dto` package.
+You can change all the classes in the `dto` and the `config` package.
 
 Hibernate does not allow entities to be records.  
 The class needs to be a not final bean with parameterless constructor.

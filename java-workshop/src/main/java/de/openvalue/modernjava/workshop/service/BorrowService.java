@@ -1,5 +1,6 @@
 package de.openvalue.modernjava.workshop.service;
 
+import de.openvalue.modernjava.workshop.config.RentalPeriodConfig;
 import de.openvalue.modernjava.workshop.domain.model.*;
 import de.openvalue.modernjava.workshop.domain.repository.*;
 import org.springframework.http.HttpStatus;
@@ -14,11 +15,13 @@ public class BorrowService {
     private final BorrowRepository borrowRepository;
     private final RentableRepository rentableRepository;
     private final CustomerRepository customerRepository;
+    private final RentalPeriodConfig rentalPeriodConfig;
 
-    public BorrowService(BorrowRepository borrowRepository, RentableRepository rentableRepository, CustomerRepository customerRepository) {
+    public BorrowService(BorrowRepository borrowRepository, RentableRepository rentableRepository, CustomerRepository customerRepository, RentalPeriodConfig rentalPeriodConfig) {
         this.borrowRepository = borrowRepository;
         this.rentableRepository = rentableRepository;
         this.customerRepository = customerRepository;
+        this.rentalPeriodConfig = rentalPeriodConfig;
     }
 
     public void assertIsRentable(long rentableId) {
@@ -67,9 +70,9 @@ public class BorrowService {
 
     private LocalDate calculateDueDate(Rentable rentable){
         return switch (rentable) {
-            case Book b -> LocalDate.now().plusDays(30);
-            case AudioBook a -> LocalDate.now().plusDays(14);
-            default -> LocalDate.now().plusDays(7);
+            case Book b -> LocalDate.now().plusDays(rentalPeriodConfig.getBook());
+            case AudioBook a -> LocalDate.now().plusDays(rentalPeriodConfig.getAudioBook());
+            default -> LocalDate.now().plusDays(rentalPeriodConfig.getDefaultPeriod());
         };
     }
 }
